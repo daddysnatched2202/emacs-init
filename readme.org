@@ -5,3 +5,4 @@
   - When I basically lost all use of my left hand, I switched to default emacs
     bindings, and I guess I got used to them
   - Also, evil isn't really built for dvorak
+  - But evil is quite nice, I like it a lot
