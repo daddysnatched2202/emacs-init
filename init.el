@@ -1,4 +1,5 @@
 ;; -*- lexical-binding: t -*-
+(setq lexical-binding t)
 
 ;; Copyright 2022 Curtis Klassen
 
@@ -13,8 +14,6 @@
 
 ;; You should have received a copy of the GNU General Public License along with this
 ;; program. If not, see <https://www.gnu.org/licenses/>.
-
-(setq lexical-binding t)
 
 ;; straight
 (defvar bootstrap-version)
