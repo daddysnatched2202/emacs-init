@@ -6,3 +6,9 @@
     bindings, and I guess I got used to them
   - Also, evil isn't really built for dvorak
   - But evil is quite nice, I like it a lot
+* Install
+  - Documenting the install process so I can remember it
+#+begin_src shell
+  cd ~/.emacs.d
+  git clone https://github.com/daddysnatched2202/emacs-init.git .
+#+end_src
