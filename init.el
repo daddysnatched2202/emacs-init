@@ -102,8 +102,7 @@
 ;; lisp
 (use-package sly
   :straight t
-  :init (setq sly-lisp-implementations '((ccl ("~/Downloads/ccl-dev/lx86cl64"))
-					 (sbcl ("sbcl"))))
+  :init (setq sly-lisp-implementations '((sbcl ("sbcl"))))
   (add-to-list 'sly-contribs 'sly-fancy)
   :custom-face (sly-mrepl-output-face ((t (:foreground "#B48EAD")))))
 
