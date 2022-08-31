@@ -372,7 +372,8 @@ capitalized"
 				      "… (ellipsis)"
 				      "— (emdash)"
 				      "™ (trademark)"
-				      "ï (i with diaresis)"
+				      "ï (i diaresis)"
+                                      "é (e acute)"
 				      "‽ (interrobang)"))
 		   0)))
     (dotimes (_i (abs arg))
