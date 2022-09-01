@@ -80,7 +80,8 @@
 (use-package embark
   :straight t
   :bind (("C-c e a" . embark-act)
-         ("C-c e b" . embark-become)))
+         ("C-c e b" . embark-become))
+  :custom (embark-quit-after-action nil))
 
 (use-package embark-consult
   :straight t)
