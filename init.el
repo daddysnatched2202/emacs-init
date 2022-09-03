@@ -290,8 +290,8 @@ Doesn't work unless 'OPTIONS=number_pad:1' is set in '~/.nethackrc'"
 ;;; eshell
 (defun shortened-path (path max-len)
   "Return a modified version of `path', replacing some components
-   with single characters starting from the left to try and get
-   the path down to `max-len'"
+with single characters starting from the left to try and get
+the path down to `max-len'"
   (let* ((components (split-string (abbreviate-file-name path) "/"))
          (len (+ (1- (length components))
                  (cl-reduce '+ components :key 'length)))
@@ -314,6 +314,24 @@ Doesn't work unless 'OPTIONS=number_pad:1' is set in '~/.nethackrc'"
 
 (setq eshell-prompt-function 'rjs-eshell-prompt-function)
 (setq eshell-hist-ignoredups t)
+
+;;; https://emacs.stackexchange.com/questions/12503/how-to-clear-the-eshell
+(defun my/eshell-run (cmd)
+  "Runs the command 'cmd' in eshell"
+  (with-current-buffer "*eshell*"
+    (end-of-buffer)
+    (eshell-kill-input)
+    (insert cmd)
+    (eshell-send-input)
+    (end-of-buffer)
+    (eshell-bol)
+    (yank)
+    (message (format "Running in Eshell: %s" cmd))))
+
+(use-package eshell
+  :bind (("C-M-<backspace>" . (lambda ()
+                                (interactive)
+                                (my/eshell-run "clear 1")))))
 
 ;;; UI
 (tool-bar-mode 0)
