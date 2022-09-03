@@ -288,7 +288,6 @@ Doesn't work unless 'OPTIONS=number_pad:1' is set in '~/.nethackrc'"
 	  ("M-m" :down-right)))
 
 ;; eshell
-
 ;; https://www.emacswiki.org/emacs/EshellPrompt
 (defun shortened-path (path max-len)
   "Return a modified version of `path', replacing some components
