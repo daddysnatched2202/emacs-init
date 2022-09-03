@@ -289,10 +289,6 @@ Doesn't work unless 'OPTIONS=number_pad:1' is set in '~/.nethackrc'"
 
 ;;; eshell
 
-(setq eshell-history-size 10000)
-(setq eshell-hist-ignore-dups t)
-(setq eshell-hist-ignoredups t)
-
 ;; https://www.emacswiki.org/emacs/EshellPrompt
 (defun shortened-path (path max-len)
   "Return a modified version of `path', replacing some components
@@ -315,8 +311,6 @@ the path down to `max-len'"
   (concat (shortened-path (eshell/pwd) 10)
           (if (= (user-uid) 0) " # " " $ ")))
 
-(setq eshell-prompt-function 'rjs-eshell-prompt-function)
-
 ;; https://emacs.stackexchange.com/questions/12503/how-to-clear-the-eshell
 (defun my/eshell-run (cmd)
   "Runs the command 'cmd' in eshell"
@@ -333,7 +327,10 @@ the path down to `max-len'"
 (use-package eshell
   :bind (("C-M-<backspace>" . (lambda ()
                                 (interactive)
-                                (my/eshell-run "clear 1")))))
+                                (my/eshell-run "clear 1"))))
+  :custom (eshell-prompt-function 'rjs-eshell-prompt-function)
+  (eshell-history-size 10000)
+  (eshell-hist-ignoredups t))
 
 ;;; UI
 (tool-bar-mode 0)
