@@ -175,11 +175,11 @@
 (use-package keepass-mode
   :straight t)
 
-;;; vterm
+;; vterm
 (use-package vterm
   :straight t)
 
-;;; ement
+;; ement
 (use-package plz
   :straight (:type git
 		   :host github
@@ -190,7 +190,7 @@
 		   :host github
 		   :repo "alphapapa/ement.el"))
 
-;;; pdf-tools
+;; pdf-tools
 (use-package pdf-tools
   :straight (pdf-tools
 	     :type git
@@ -201,18 +201,18 @@
   :bind (:map pdf-view-mode-map
 	      ("C-s" . 'isearch-forward-word)))
 
-;;; all-the-icons-dired
+;; all-the-icons-dired
 (use-package all-the-icons-dired
   :straight t
   :hook (dired-mode . all-the-icons-dired-mode))
 
-;;; ace-window
+;; ace-window
 (use-package ace-window
   :straight t
   :bind (("M-o" . ace-window))
   :custom (aw-dispatch-always t))
 
-;;; dired
+;; dired
 (defun dired/find-file ()
   "Find the file at point in the window selected by 'ace-window'"
   (interactive)
@@ -223,7 +223,7 @@
          ("C-F" . dired/find-file))
   :hook ((dired-mode . dired-hide-details-mode)))
 
-;;; nethack
+;; nethack
 (defun map-chars (f str as)
   (apply
    'concat
@@ -287,7 +287,7 @@ Doesn't work unless 'OPTIONS=number_pad:1' is set in '~/.nethackrc'"
 	  ("M-b" :down-left)
 	  ("M-m" :down-right)))
 
-;;; eshell
+;; eshell
 
 ;; https://www.emacswiki.org/emacs/EshellPrompt
 (defun shortened-path (path max-len)
@@ -332,7 +332,7 @@ the path down to `max-len'"
   (eshell-history-size 10000)
   (eshell-hist-ignoredups t))
 
-;;; UI
+;; UI
 (tool-bar-mode 0)
 (menu-bar-mode 0)
 (fringe-mode 0)
@@ -379,7 +379,7 @@ the path down to `max-len'"
 
 (add-to-list 'fill-nobreak-predicate 'fill-french-nobreak-p)
 
-;;; insert characters
+;; insert characters
 (defun insert-special-char (arg)
   "Prompt for a special character and insert it; if called with a
 prefix, the character will be inserted that many times. If the
@@ -402,7 +402,7 @@ capitalized"
 
 (global-set-key (kbd "C-c 8 i") 'insert-special-char)
 
-;;; other keybinds
+;; other keybinds
 (global-set-key (kbd "C-x M-;") 'comment-line)
 (global-set-key (kbd "C-M-f") 'forward-to-word)
 (global-set-key (kbd "C-c j") 'just-one-space)
