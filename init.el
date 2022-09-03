@@ -317,11 +317,11 @@ the path down to `max-len'"
     (end-of-buffer)
     (eshell-kill-input)
     (insert cmd)
+    (message (format "Running in Eshell: %s" cmd))
     (eshell-send-input)
     (end-of-buffer)
     (eshell-bol)
-    (yank)
-    (message (format "Running in Eshell: %s" cmd))))
+    (yank)))
 
 (use-package eshell
   :bind (("C-M-<backspace>" . (lambda ()
