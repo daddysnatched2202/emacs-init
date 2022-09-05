@@ -10,5 +10,5 @@
   - Documenting the install process so I can remember it
 #+begin_src shell
   cd ~/.emacs.d
-  git clone https://github.com/daddysnatched2202/emacs-init.git .
+  git clone https://github.com/daddysnatched2202/init.el.git .
 #+end_src
