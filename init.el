@@ -37,7 +37,20 @@
 (defun my/find-file (get-file-func)
   (let ((f (funcall get-file-func)))
     (when (ace-window t)
-        (find-file f))))
+      (find-file f))))
+
+(defun my/map-chars (f str as)
+  (apply
+   'concat
+   (cl-loop for c across str
+	    collect (funcall
+                     f
+	             (cond ((eq as :char)
+		            c)
+		           ((eq as :string)
+		            (char-to-string c))
+		           (t
+		            (error "'as' must be either ':char' or ':string'")))))))
 
 ;; completions
 (use-package vertico
@@ -225,19 +238,6 @@
   :hook ((dired-mode . dired-hide-details-mode)))
 
 ;; nethack
-(defun map-chars (f str as)
-  (apply
-   'concat
-   (cl-loop for c across str
-	    collect (funcall
-                     f
-	             (cond ((eq as :char)
-		            c)
-		           ((eq as :string)
-		            (char-to-string c))
-		           (t
-		            (error "'as' must be either ':char' or ':string'")))))))
-
 (defvar nethack/keymap (make-keymap))
 
 (define-minor-mode nethack/mode
@@ -274,7 +274,7 @@ Doesn't work unless 'OPTIONS=number_pad:1' is set in '~/.nethackrc'"
       (switch-to-buffer "nethack")
     (progn (vterm "nethack")
 	   (switch-to-buffer "nethack")
-	   (map-chars 'vterm-send "nethack" :string)
+	   (my/map-chars 'vterm-send "nethack" :string)
 	   (vterm-send-return)))
   (nethack/mode 1))
 
@@ -318,11 +318,11 @@ the path down to `max-len'"
     (end-of-buffer)
     (eshell-kill-input)
     (insert cmd)
-    (message (format "Running in Eshell: %s" cmd))
     (eshell-send-input)
     (end-of-buffer)
     (eshell-bol)
-    (yank)))
+    (yank)
+    (message (format "Ran in Eshell: %s" cmd))))
 
 (use-package eshell
   :bind (("C-M-<backspace>" . (lambda ()
