@@ -373,7 +373,7 @@ the path down to `max-len'"
 
 (setq backup-directory-alist '(("." . "~/.emacs_saves")))
 (setq initial-scratch-message ";; Welcome to Emacs !!\n\n")
-(setq org-startup-folded 'overview)
+(setq org-startup-folded 'content)
 (setq org-blank-before-new-entry nil)
 
 (add-to-list 'fill-nobreak-predicate 'fill-french-nobreak-p)
