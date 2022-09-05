@@ -378,6 +378,19 @@ the path down to `max-len'"
 (add-to-list 'fill-nobreak-predicate 'fill-french-nobreak-p)
 
 ;; insert characters
+(defvar special-chars (let ((chars '(("λ" . "lambda")
+                                     ("…" . "ellipsis")
+                                     ("—" . "emdash")
+                                     ("™" . "tm")
+                                     ("‽" . "interrobang")
+                                     ("é" . "e : acute")
+                                     ("ï" . "i : diaresis"))))
+                        (mapcar (lambda (char-cons)
+                                  (format "%s - (%s)"
+                                          (car char-cons)
+                                          (cdr char-cons)))
+                                chars)))
+
 (defun insert-special-char (arg)
   "Prompt for a special character and insert it; if called with a
 prefix, the character will be inserted that many times. If the
@@ -385,13 +398,7 @@ prefix is negative (M--), the character will additionally be
 capitalized"
   (interactive "p")
   (let ((char (elt (completing-read "Character to insert: "
-				    '("λ (lambda)"
-				      "… (ellipsis)"
-				      "— (emdash)"
-				      "™ (trademark)"
-				      "ï (i diaresis)"
-                                      "é (e acute)"
-				      "‽ (interrobang)"))
+				    special-chars)
 		   0)))
     (dotimes (_i (abs arg))
       (insert (if (< arg 0)
