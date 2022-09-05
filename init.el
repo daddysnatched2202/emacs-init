@@ -384,8 +384,8 @@ the path down to `max-len'"
                                      ("—" . "emdash")
                                      ("™" . "tm")
                                      ("‽" . "interrobang")
-                                     ("é" . "e acute")
-                                     ("ï" . "i diaresis"))))
+                                     ("é" . "e : acute")
+                                     ("ï" . "i : diaresis"))))
                         (mapcar (lambda (char-cons)
                                   (format "%s - (%s)"
                                           (car char-cons)
