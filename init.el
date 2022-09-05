@@ -325,12 +325,18 @@ the path down to `max-len'"
     (message (format "Ran in Eshell: %s" cmd))))
 
 (use-package eshell
-  :bind (("C-M-<backspace>" . (lambda ()
-                                (interactive)
-                                (my/eshell-run "clear 1"))))
   :custom (eshell-prompt-function 'rjs-eshell-prompt-function)
   (eshell-history-size 10000)
   (eshell-hist-ignoredups t))
+
+(global-set-key (kbd "C-c s <backspace>")
+                (lambda ()
+                  (interactive)
+                  (my/eshell-run "clear 1")))
+(global-set-key (kbd "C-c s s")
+                (lambda ()
+                  (interactive)
+                  (switch-to-buffer "*eshell*")))
 
 ;; UI
 (tool-bar-mode 0)
