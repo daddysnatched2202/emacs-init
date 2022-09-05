@@ -33,6 +33,7 @@
 
 (straight-use-package 'use-package)
 
+;; utility functions
 (defun my/find-file (get-file-func)
   (let ((f (funcall get-file-func)))
     (when (ace-window t)
