@@ -116,6 +116,13 @@
   :config (load-theme 'doom-nord t))
 
 ;; lisp
+(defun lisp/edit-definition ()
+  "Edit the symbol at point in the window selected by 'ace-window'"
+  (interactive)
+  (let ((sym (sly-symbol-at-point)))
+    (when (ace-window t)
+      (sly-edit-definition sym))))
+
 (use-package sly
   :straight t
   :init (setq sly-lisp-implementations '((ccl ("~/Downloads/ccl-dev/lx86cl64"))
