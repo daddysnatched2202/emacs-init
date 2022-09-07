@@ -2,8 +2,8 @@
   - My personal emacs config, with minimal custom code and modern emacs config style
 * Evil
   - Why don't I use evil ?
-  - When I basically lost all use of my left hand, I switched to default emacs
-    bindings, and I guess I got used to them
+  - When I basically lost all use of my left hand for 6 months, I switched to default
+    emacs bindings, and I guess I got used to them
   - Also, evil isn't really built for dvorak
   - But evil is quite nice, I like it a lot
 * Install
