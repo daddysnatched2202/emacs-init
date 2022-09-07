@@ -33,10 +33,24 @@
 
 (straight-use-package 'use-package)
 
+;; utility functions
 (defun my/find-file (get-file-func)
   (let ((f (funcall get-file-func)))
     (when (ace-window t)
-        (find-file f))))
+      (find-file f))))
+
+(defun my/map-chars (f str as)
+  (apply
+   'concat
+   (cl-loop for c across str
+	    collect (funcall
+                     f
+	             (cond ((eq as :char)
+		            c)
+		           ((eq as :string)
+		            (char-to-string c))
+		           (t
+		            (error "'as' must be either ':char' or ':string'")))))))
 
 ;; completions
 (use-package vertico
@@ -102,11 +116,20 @@
   :config (load-theme 'doom-nord t))
 
 ;; lisp
+(defun lisp/edit-definition ()
+  "Edit the symbol at point in the window selected by 'ace-window'"
+  (interactive)
+  (let ((sym (sly-symbol-at-point)))
+    (when (ace-window t)
+      (sly-edit-definition sym))))
+
 (use-package sly
   :straight t
   :init (setq sly-lisp-implementations '((sbcl ("sbcl"))))
   (add-to-list 'sly-contribs 'sly-fancy)
-  :custom-face (sly-mrepl-output-face ((t (:foreground "#B48EAD")))))
+  :custom-face (sly-mrepl-output-face ((t (:foreground "#B48EAD"))))
+  :bind (:map lisp-mode-map
+              ("C-M-." . lisp/edit-definition)))
 
 ;; paredit
 (defun override-slime ()
@@ -223,19 +246,6 @@
   :hook ((dired-mode . dired-hide-details-mode)))
 
 ;; nethack
-(defun map-chars (f str as)
-  (apply
-   'concat
-   (cl-loop for c across str
-	    collect (funcall
-                     f
-	             (cond ((eq as :char)
-		            c)
-		           ((eq as :string)
-		            (char-to-string c))
-		           (t
-		            (error "'as' must be either ':char' or ':string'")))))))
-
 (defvar nethack/keymap (make-keymap))
 
 (define-minor-mode nethack/mode
@@ -272,7 +282,7 @@ Doesn't work unless 'OPTIONS=number_pad:1' is set in '~/.nethackrc'"
       (switch-to-buffer "nethack")
     (progn (vterm "nethack")
 	   (switch-to-buffer "nethack")
-	   (map-chars 'vterm-send "nethack" :string)
+	   (my/map-chars 'vterm-send "nethack" :string)
 	   (vterm-send-return)))
   (nethack/mode 1))
 
@@ -316,19 +326,22 @@ the path down to `max-len'"
     (end-of-buffer)
     (eshell-kill-input)
     (insert cmd)
-    (message (format "Running in Eshell: %s" cmd))
     (eshell-send-input)
     (end-of-buffer)
     (eshell-bol)
-    (yank)))
+    (yank)
+    (message (format "Ran in Eshell: %s" cmd))))
 
 (use-package eshell
-  :bind (("C-M-<backspace>" . (lambda ()
-                                (interactive)
-                                (my/eshell-run "clear 1"))))
   :custom (eshell-prompt-function 'rjs-eshell-prompt-function)
   (eshell-history-size 10000)
-  (eshell-hist-ignoredups t))
+  (eshell-hist-ignoredups t)
+  :bind (("C-c s <backspace>" . (lambda ()
+                                  (interactive)
+                                  (my/eshell-run "clear 1")))
+         ("C-c s s" . (lambda ()
+                        (interactive)
+                        (switch-to-buffer "*eshell*")))))
 
 ;; UI
 (tool-bar-mode 0)
