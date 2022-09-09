@@ -57,8 +57,7 @@
   :straight t
   :init (vertico-mode))
 
-(defadvice vertico-insert
-    (after vertico-insert-add-history activate)
+(defadvice vertico-insert (after vertico-insert-add-history activate)
   "Make 'vertico-insert' add to the minibuffer history."
   (unless (eq minibuffer-history-variable t)
     (add-to-history minibuffer-history-variable (minibuffer-contents))))
