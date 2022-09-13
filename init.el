@@ -343,6 +343,11 @@ the path down to `max-len'"
                         (interactive)
                         (switch-to-buffer "*eshell*")))))
 
+;; Emojify
+(use-package emojify
+  :straight t
+  :init (emojify-set-emoji-styles '(unicode)))
+
 ;; UI
 (tool-bar-mode 0)
 (menu-bar-mode 0)
