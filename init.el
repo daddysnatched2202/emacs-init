@@ -416,8 +416,8 @@ prefix is negative (M--), the character will additionally be
 capitalized"
   (interactive "p")
   (let ((char (elt (completing-read "Character to insert: "
-				    special-chars)
-		   0)))
+                                    special-chars)
+                   0)))
     (dotimes (_i (abs arg))
       (insert (if (< arg 0)
 		  (upcase char)
