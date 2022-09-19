@@ -243,7 +243,8 @@
 (use-package dired
   :bind (:map dired-mode-map
          ("C-F" . dired/find-file))
-  :hook ((dired-mode . dired-hide-details-mode)))
+  :hook ((dired-mode . dired-hide-details-mode))
+  :custom (dired-auto-revert-buffer t))
 
 ;; nethack
 (defvar nethack/keymap (make-keymap))
