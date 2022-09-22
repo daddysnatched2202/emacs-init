@@ -403,12 +403,13 @@ the path down to `max-len'"
                                      ("™" . "tm")
                                      ("‽" . "interrobang")
                                      ("é" . "e : acute")
-                                     ("ï" . "i : diaresis"))))
+                                     ("ï" . "i : diaresis")))
+                            (others '(("🅱️" . "Meme B"))))
                         (mapcar (lambda (char-cons)
-                                  (format "%s - (%s)"
+                                  (format "'%s' - (%s)"
                                           (car char-cons)
                                           (cdr char-cons)))
-                                chars)))
+                                (append chars others))))
 
 (defun insert-special-char (arg)
   "Prompt for a special character and insert it; if called with a
@@ -416,9 +417,11 @@ prefix, the character will be inserted that many times. If the
 prefix is negative (M--), the character will additionally be
 capitalized"
   (interactive "p")
-  (let ((char (elt (completing-read "Character to insert: "
-                                    special-chars)
-                   0)))
+  (let ((char (substring (car (s-match "^'.*'"
+                                       (completing-read "Character to insert: "
+                                                        special-chars)))
+                         1
+                         -1)))
     (dotimes (_i (abs arg))
       (insert (if (< arg 0)
 		  (upcase char)
