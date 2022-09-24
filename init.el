@@ -232,7 +232,9 @@
 (use-package ace-window
   :straight t
   :bind (("M-o" . ace-window))
-  :custom (aw-dispatch-always t))
+  :custom (aw-dispatch-always t)
+  :custom-face (aw-leading-char-face ((t (:foreground "#BF616A"
+                                          :height 1.5)))))
 
 ;; dired
 (defun dired/find-file ()
