@@ -115,6 +115,15 @@
   :config (load-theme 'doom-nord t))
 
 ;; lisp
+(defun my/push-button ()
+  "Pushes the button at point in the window selected by 'ace-window'"
+  (interactive)
+  (let ((b (current-buffer))
+        (p (point)))
+    (when (ace-window t)
+      (switch-to-buffer b)
+      (push-button p))))
+
 (defun lisp/edit-definition ()
   "Edit the symbol at point in the window selected by 'ace-window'"
   (interactive)
@@ -128,8 +137,11 @@
 					 (sbcl ("sbcl"))))
   (add-to-list 'sly-contribs 'sly-fancy)
   :custom-face (sly-mrepl-output-face ((t (:foreground "#B48EAD"))))
-  :bind (:map lisp-mode-map
-              ("C-M-." . lisp/edit-definition)))
+  :bind (:map
+         lisp-mode-map
+         ("C-M-." . lisp/edit-definition)
+         :map sly-mrepl-mode-map
+         ("C-M-<return>" . my/push-button)))
 
 ;; paredit
 (defun override-slime ()
