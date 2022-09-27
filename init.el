@@ -52,6 +52,12 @@
 		           (t
 		            (error "'as' must be either ':char' or ':string'")))))))
 
+
+(defmacro my/if-buffer (buffer else)
+  `(if (get-buffer ,buffer)
+       (switch-to-buffer ,buffer)
+     ,else))
+
 ;; completions
 (use-package vertico
   :straight t
@@ -294,12 +300,11 @@ Doesn't work unless 'OPTIONS=number_pad:1' is set in '~/.nethackrc'"
 
 (defun nethack/play ()
   (interactive)
-  (if (get-buffer "nethack")
-      (switch-to-buffer "nethack")
-    (progn (vterm "nethack")
-	   (switch-to-buffer "nethack")
-	   (my/map-chars 'vterm-send "nethack" :string)
-	   (vterm-send-return)))
+  (my/if-buffer "nethack"
+                (progn (vterm "nethack")
+                       (switch-to-buffer "nethack")
+                       (my/map-chars 'vterm-send "nethack" :string)
+                       (vterm-send-return)))
   (nethack/mode 1))
 
 (mapcar (lambda (ls) (apply 'nethack/add-key ls))
@@ -351,9 +356,8 @@ the path down to `max-len'"
 (defun my/eshell-switch ()
   (interactive)
   (when (ace-window t)
-    (if (get-buffer "*eshell*")
-        (switch-to-buffer "*eshell*")
-      (eshell))))
+    (my/if-buffer "*eshell*"
+                  (eshell))))
 
 (use-package eshell
   :custom (eshell-prompt-function 'rjs-eshell-prompt-function)
