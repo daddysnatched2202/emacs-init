@@ -341,7 +341,7 @@ the path down to `max-len'"
           (if (= (user-uid) 0) " # " " $ ")))
 
 ;; https://emacs.stackexchange.com/questions/12503/how-to-clear-the-eshell
-(defun my/eshell-run (cmd)
+(defun eshell/run (cmd)
   "Runs the command 'cmd' in eshell"
   (with-current-buffer "*eshell*"
     (end-of-buffer)
@@ -353,7 +353,7 @@ the path down to `max-len'"
     (yank)
     (message (format "Ran in Eshell: %s" cmd))))
 
-(defun my/eshell-switch ()
+(defun eshell/switch ()
   (interactive)
   (when (ace-window t)
     (my/if-buffer "*eshell*"
@@ -365,8 +365,8 @@ the path down to `max-len'"
   (eshell-hist-ignoredups t)
   :bind (("C-c s <backspace>" . (lambda ()
                                   (interactive)
-                                  (my/eshell-run "clear 1")))
-         ("C-c s s" . 'my/eshell-switch)))
+                                  (eshell/run "clear 1")))
+         ("C-c s s" . 'eshell/switch)))
 
 ;; Emojify
 (use-package emojify
