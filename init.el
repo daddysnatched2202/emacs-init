@@ -149,6 +149,7 @@
     (read-kbd-macro paredit-backward-delete-key)
     nil))
 
+;; https://stackoverflow.com/questions/11135315/prevent-paredit-from-inserting-a-space-when-inserting-parentheses-and-other-is
 (defun paredit-space-macros (endp delimiter)
   (or endp
       (if (eq (char-syntax delimiter) ?\()
