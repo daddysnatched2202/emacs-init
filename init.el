@@ -356,7 +356,9 @@ the path down to `max-len'"
                                   (my/eshell-run "clear 1")))
          ("C-c s s" . (lambda ()
                         (interactive)
-                        (switch-to-buffer "*eshell*")))))
+                        (if (get-buffer "*eshell*")
+                            (switch-to-buffer "*eshell*")
+                          (eshell))))))
 
 ;; Emojify
 (use-package emojify
