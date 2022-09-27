@@ -347,6 +347,13 @@ the path down to `max-len'"
     (yank)
     (message (format "Ran in Eshell: %s" cmd))))
 
+(defun my/eshell-switch ()
+  (interactive)
+  (when (ace-window t)
+    (if (get-buffer "*eshell*")
+        (switch-to-buffer "*eshell*")
+      (eshell))))
+
 (use-package eshell
   :custom (eshell-prompt-function 'rjs-eshell-prompt-function)
   (eshell-history-size 10000)
@@ -354,11 +361,7 @@ the path down to `max-len'"
   :bind (("C-c s <backspace>" . (lambda ()
                                   (interactive)
                                   (my/eshell-run "clear 1")))
-         ("C-c s s" . (lambda ()
-                        (interactive)
-                        (if (get-buffer "*eshell*")
-                            (switch-to-buffer "*eshell*")
-                          (eshell))))))
+         ("C-c s s" . 'my/eshell-switch)))
 
 ;; Emojify
 (use-package emojify
