@@ -454,10 +454,18 @@ capitalized"
 (global-set-key (kbd "C-c 8 i") 'insert-special-char)
 
 ;; other keybinds
+(defun ace/quit ()
+  (interactive)
+  (when (ace-window t)
+    (quit-window)))
+
+(defun ace/buffer ()
+  (interactive)
+  (when (ace-window t)
+    (consult-buffer)))
+
 (global-set-key (kbd "C-x M-;") 'comment-line)
 (global-set-key (kbd "C-M-f") 'forward-to-word)
-(global-set-key (kbd "C-c j") 'just-one-space)
-(global-set-key (kbd "C-c q") (lambda ()
-                                (interactive)
-                                (when (ace-window t)
-                                  (quit-window))))
+(global-set-key (kbd "C-c SPC") 'just-one-space)
+(global-set-key (kbd "C-c q") 'ace/quit)
+(global-set-key (kbd "C-c b") 'ace/buffer)
