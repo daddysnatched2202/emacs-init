@@ -52,7 +52,6 @@
 		           (t
 		            (error "'as' must be either ':char' or ':string'")))))))
 
-
 (defmacro my/if-buffer (buffer else)
   `(if (get-buffer ,buffer)
        (switch-to-buffer ,buffer)
