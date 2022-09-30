@@ -94,7 +94,8 @@
 (use-package consult
   :straight t
   :bind (("C-s" . consult-line)
-	 ("C-x b" . consult-buffer)))
+	 ("C-x b" . consult-buffer)
+         ("M-g g" . consult-goto-line)))
 
 (use-package embark
   :straight t
