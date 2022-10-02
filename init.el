@@ -277,11 +277,6 @@ Doesn't work unless 'OPTIONS=number_pad:1' is set in '~/.nethackrc'"
   " nethack"
   nethack/keymap)
 
-(defun nethack/make-move-func (key)
-  (lambda ()
-    (interactive)
-    (vterm-send key)))
-
 (defun nethack/add-key (key-from dir)
   (cl-labels ((lookup-direction (direction)
 				(cl-case direction
@@ -293,10 +288,14 @@ Doesn't work unless 'OPTIONS=number_pad:1' is set in '~/.nethackrc'"
 				  (:up-left "7")
 				  (:up "8")
 				  (:up-right "9")
-				  (t (error "Supplied direction is not valid")))))
+				  (t (error "Supplied direction is not valid"))))
+              (make-move-func (key)
+                              (lambda ()
+                                (interactive)
+                                (vterm-send key))))
     (define-key nethack/keymap
       (kbd key-from)
-      (nethack/make-move-func (lookup-direction dir)))))
+      (make-move-func (lookup-direction dir)))))
 
 (defun nethack/play ()
   (interactive)
