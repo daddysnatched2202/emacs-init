@@ -418,7 +418,45 @@ the path down to `max-len'"
 (setq org-startup-folded 'content)
 (setq org-blank-before-new-entry nil)
 
+(put 'upcase-region 'disabled nil)
+
 (add-to-list 'fill-nobreak-predicate 'fill-french-nobreak-p)
+
+(defun sp-string (str offset)
+  (concat (cl-loop for c across str
+                   for i from offset
+                   for m = (mod i 2)
+                   collect (if (= m 0)
+                               (upcase c)
+                             (downcase c)))))
+
+(defun sp-region (start end)
+  (interactive "r")
+  (let ((text (sp-string (s-downcase (buffer-substring start end)) 0)))
+    (delete-region start end)
+    (goto-char start)
+    (insert text)))
+
+(defun sp-region2 (start end)
+  (interactive "r")
+  (let ((text (sp-string (s-downcase (buffer-substring start end)) 1)))
+    (delete-region start end)
+    (goto-char start)
+    (insert text)))
+
+(defun sc-string (str)
+  (concat (cl-loop for c across str
+                   for s = (string c)
+                   collect (if (s-uppercase? s)
+                               (downcase c)
+                             (upcase c)))))
+
+(defun sc-region (start end)
+  (interactive "r")
+  (let ((text (sc-string (buffer-substring start end))))
+    (delete-region start end)
+    (goto-char start)
+    (insert text)))
 
 ;; insert characters
 (defvar special-chars (let ((chars '(("λ" . "lambda")
