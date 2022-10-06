@@ -121,6 +121,8 @@
   :config (load-theme 'doom-nord t))
 
 ;; lisp
+(defvar sly-mrepl-mode-map (make-keymap))
+
 (defun my/push-button ()
   "Pushes the button at point in the window selected by 'ace-window'"
   (interactive)
