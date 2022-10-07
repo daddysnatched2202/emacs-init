@@ -420,6 +420,7 @@ the path down to `max-len'"
 (setq org-blank-before-new-entry nil)
 
 (put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
 
 (add-to-list 'fill-nobreak-predicate 'fill-french-nobreak-p)
 
@@ -431,16 +432,12 @@ the path down to `max-len'"
                                (upcase c)
                              (downcase c)))))
 
-(defun sp-region (start end)
-  (interactive "r")
-  (let ((text (sp-string (s-downcase (buffer-substring start end)) 0)))
-    (delete-region start end)
-    (goto-char start)
-    (insert text)))
-
-(defun sp-region2 (start end)
-  (interactive "r")
-  (let ((text (sp-string (s-downcase (buffer-substring start end)) 1)))
+(defun sp-region (arg start end)
+  (interactive "p\nr")
+  (let ((text (sp-string (s-downcase (buffer-substring start end))
+                         (if (< arg 0)
+                             1
+                           0))))
     (delete-region start end)
     (goto-char start)
     (insert text)))
@@ -506,5 +503,5 @@ capitalized"
 (global-set-key (kbd "C-x M-;") 'comment-line)
 (global-set-key (kbd "C-M-f") 'forward-to-word)
 (global-set-key (kbd "C-c SPC") 'just-one-space)
-(global-set-key (kbd "C-c q") 'ace/quit)
-(global-set-key (kbd "C-c b") 'ace/buffer)
+(global-set-key (kbd "C-c a q") 'ace/quit)
+(global-set-key (kbd "C-c a b") 'ace/buffer)
