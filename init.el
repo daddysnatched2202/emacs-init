@@ -144,6 +144,7 @@
   (add-to-list 'sly-contribs 'sly-fancy)
   :custom-face (sly-mrepl-output-face ((t (:foreground "#B48EAD")))))
 
+;; https://github.com/joaotavora/sly/issues/507
 (use-package sly-mrepl
   :bind (:map
          lisp-mode-map
