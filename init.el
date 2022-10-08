@@ -142,14 +142,14 @@
   :init (setq sly-lisp-implementations '((ccl ("~/Downloads/ccl-dev/lx86cl64"))
 					 (sbcl ("sbcl"))))
   (add-to-list 'sly-contribs 'sly-fancy)
-  :custom-face (sly-mrepl-output-face ((t (:foreground "#B48EAD")))))
+  :custom-face (sly-mrepl-output-face ((t (:foreground "#B48EAD"))))
+  :bind (:map
+         lisp-mode-map
+         ("C-M-." . lisp/edit-definition)))
 
 ;; https://github.com/joaotavora/sly/issues/507
 (use-package sly-mrepl
-  :bind (:map
-         lisp-mode-map
-         ("C-M-." . lisp/edit-definition)
-         :map sly-mrepl-mode-map
+  :bind (:map sly-mrepl-mode-map
          ("C-M-<return>" . my/push-button)))
 
 ;; paredit
