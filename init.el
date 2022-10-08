@@ -121,8 +121,6 @@
   :config (load-theme 'doom-nord t))
 
 ;; lisp
-(defvar sly-mrepl-mode-map (make-keymap))
-
 (defun my/push-button ()
   "Pushes the button at point in the window selected by 'ace-window'"
   (interactive)
@@ -144,7 +142,9 @@
   :init (setq sly-lisp-implementations '((ccl ("~/Downloads/ccl-dev/lx86cl64"))
 					 (sbcl ("sbcl"))))
   (add-to-list 'sly-contribs 'sly-fancy)
-  :custom-face (sly-mrepl-output-face ((t (:foreground "#B48EAD"))))
+  :custom-face (sly-mrepl-output-face ((t (:foreground "#B48EAD")))))
+
+(use-package sly-mrepl
   :bind (:map
          lisp-mode-map
          ("C-M-." . lisp/edit-definition)
