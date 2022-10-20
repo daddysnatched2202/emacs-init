@@ -426,8 +426,10 @@ the path down to `max-len'"
 (add-to-list 'fill-nobreak-predicate 'fill-french-nobreak-p)
 
 (defun sp-string (str offset)
-  (concat (cl-loop for c across str
+  (concat (cl-loop for c across (s-downcase str)
                    for i from offset
+                   do (if (member c '(?  ?\n))
+                          (cl-decf i))
                    for m = (mod i 2)
                    collect (if (= m 0)
                                (upcase c)
@@ -456,6 +458,13 @@ the path down to `max-len'"
     (delete-region start end)
     (goto-char start)
     (insert text)))
+
+(defun wrap-region (str start end)
+  (interactive "s\nr")
+  (let ((text (buffer-substring start end)))
+    (delete-region start end)
+    (goto-char start)
+    (insert (format "%s%s%s" str text str))))
 
 ;; insert characters
 (defvar special-chars (let ((chars '(("λ" . "lambda")
