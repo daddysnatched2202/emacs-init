@@ -183,9 +183,10 @@
   :straight t
   :hook (after-init . doom-modeline-mode)
   :custom
-  (doom-modeline-height 25)
+  (doom-modeline-height 75)
   (doom-modeline-buffer-file-name-style 'truncate-all)
-  (doom-modeline-minor-modes t))
+  (doom-modeline-minor-modes t)
+  (doom-modeline-bar-width 10))
 
 ;; rainbow-delimiters
 (use-package rainbow-delimiters
