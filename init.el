@@ -96,11 +96,17 @@
 	 ("C-x b" . consult-buffer)
          ("M-g g" . consult-goto-line)))
 
+(defun embark/buffer (b)
+  (when (ace-window t)
+    (switch-to-buffer b)))
+
 (use-package embark
   :straight t
   :bind (("C-c e a" . embark-act)
          ("C-c e b" . embark-become))
-  :custom (embark-quit-after-action nil))
+  :custom (embark-quit-after-action nil)
+  :bind (:map embark-buffer-map
+              ("C-b" . embark/buffer)))
 
 (use-package embark-consult
   :straight t)
@@ -139,12 +145,11 @@
 
 (use-package sly
   :straight t
-  :init (setq sly-lisp-implementations '((ccl ("~/Downloads/ccl-dev/lx86cl64"))
+  :init (setq sly-lisp-implementations '((ccl ("~/Downloads/ccl/lx86cl64"))
 					 (sbcl ("sbcl"))))
   (add-to-list 'sly-contribs 'sly-fancy)
   :custom-face (sly-mrepl-output-face ((t (:foreground "#B48EAD"))))
-  :bind (:map
-         lisp-mode-map
+  :bind (:map lisp-mode-map
          ("C-M-." . lisp/edit-definition)))
 
 ;; https://github.com/joaotavora/sly/issues/507
