@@ -103,10 +103,10 @@
 (use-package embark
   :straight t
   :bind (("C-c e a" . embark-act)
-         ("C-c e b" . embark-become))
-  :custom (embark-quit-after-action t)
-  :bind (:map embark-buffer-map
-              ("C-b" . embark/buffer)))
+         ("C-c e b" . embark-become)
+         (:map embark-buffer-map
+               ("C-b" . embark/buffer)))
+  :custom (embark-quit-after-action t))
 
 (use-package embark-consult
   :straight t)
