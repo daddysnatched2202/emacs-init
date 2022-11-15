@@ -480,7 +480,10 @@ the path down to `max-len'"
                                      ("‽" . "interrobang")
                                      ("é" . "e : acute")
                                      ("ï" . "i : diaresis")))
-                            (others '(("🅱️" . "Meme B"))))
+                            (others '(("🅱️" . "Meme B")
+                                      ("🤔" . "Thinking Emoji")
+                                      ("🤣" . "Crying Laughing Emoji")
+                                      ("😱" . "Frighten Emoji"))))
                         (mapcar (lambda (char-cons)
                                   (format "%s - (%s)"
                                           (car char-cons)
