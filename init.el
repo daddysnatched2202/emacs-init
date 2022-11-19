@@ -431,10 +431,15 @@ the path down to `max-len'"
 
 (add-to-list 'fill-nobreak-predicate 'fill-french-nobreak-p)
 
+;;; https://emacs.stackexchange.com/questions/8261/how-to-determine-if-the-current-character-is-a-letter
+(defun is-letter (ch)
+  (memq (get-char-code-property ch 'general-category)
+        '(Ll Lu Lo Lt Lm Mn Mc Me Nl)))
+
 (defun sp-string (str offset)
   (concat (cl-loop for c across (s-downcase str)
                    for i from offset
-                   do (if (member c '(?  ?\n))
+                   do (if (not (is-letter c))
                           (cl-decf i))
                    for m = (mod i 2)
                    collect (if (= m 0)
