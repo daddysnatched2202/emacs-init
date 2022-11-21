@@ -485,7 +485,7 @@ the path down to `max-len'"
                                      ("‽" . "interrobang")
                                      ("é" . "e : acute")
                                      ("ï" . "i : diaresis")))
-                            (others '(("🅱️" . "Meme B")
+                            (others '(("🅱️" . "Meme B Emoji")
                                       ("🤔" . "Thinking Emoji")
                                       ("🤣" . "Crying Laughing Emoji")
                                       ("😱" . "Frighten Emoji"))))
