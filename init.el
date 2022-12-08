@@ -477,6 +477,13 @@ the path down to `max-len'"
     (goto-char start)
     (insert (format "%s%s%s" str text str))))
 
+(defun paren-wrap (start end)
+  (interactive "r")
+  (let ((text (buffer-substring start end)))
+    (delete-region start end)
+    (goto-char start)
+    (insert (format "(%s)" text))))
+
 ;; insert characters
 (defvar special-chars (let ((chars '(("λ" . "lambda")
                                      ("…" . "ellipsis")
