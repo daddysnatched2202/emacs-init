@@ -403,6 +403,7 @@ the path down to `max-len'"
 
 (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
 (set-face-attribute 'font-lock-string-face nil :slant 'italic)
+(set-face-attribute 'org-link nil :underline nil)
 
 ;; other settings
 (setq warning-minimum-level :emergency)
@@ -498,7 +499,8 @@ the path down to `max-len'"
                                       ("🤔" . "Thinking Emoji")
                                       ("🤣" . "Crying Laughing Emoji")
                                       ("😱" . "Frighten Emoji")
-                                      ("😬" . "Cring Emoji"))))
+                                      ("😬" . "Cring Emoji")
+                                      ("😭" . "Crying Emoji"))))
                         (mapcar (lambda (char-cons)
                                   (format "%s - (%s)"
                                           (car char-cons)
