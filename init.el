@@ -403,7 +403,7 @@ the path down to `max-len'"
 
 (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
 (set-face-attribute 'font-lock-string-face nil :slant 'italic)
-(set-face-attribute 'org-link nil :underline nil)
+(set-face-attribute 'link nil :underline nil)
 
 ;; other settings
 (setq warning-minimum-level :emergency)
