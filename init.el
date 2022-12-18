@@ -79,6 +79,10 @@
   (cond ((s-prefix? "`" pattern)
          (cons 'orderless-literal (substring pattern 1)))))
 
+(defun orderless/without (pattern _index _total)
+  (cond ((s-prefix? "!" pattern)
+         (cons 'orderless-without-literal (substring pattern 1)))))
+
 (use-package orderless
   :straight t
   :custom (completion-styles '(orderless basic))
@@ -88,7 +92,8 @@
                                orderless-regexp
                                orderless-flex
                                orderless-prefixes))
-  (orderless-style-dispatchers '(orderless/literal)))
+  (orderless-style-dispatchers '(orderless/literal
+                                 orderless/without)))
 
 (use-package consult
   :straight t
