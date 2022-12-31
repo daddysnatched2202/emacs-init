@@ -105,12 +105,14 @@
   (when (ace-window t)
     (switch-to-buffer b)))
 
+(defun embark/file (f)
+  (when (ace-window t)
+    (find-file f)))
+
 (use-package embark
   :straight t
   :bind (("C-c e a" . embark-act)
-         ("C-c e b" . embark-become)
-         (:map embark-buffer-map
-               ("C-b" . embark/buffer)))
+         ("C-c e b" . embark-become))
   :custom (embark-quit-after-action t))
 
 (use-package embark-consult
@@ -492,10 +494,12 @@ the path down to `max-len'"
 
 ;; insert characters
 (defvar special-chars (let ((chars '(("λ" . "lambda")
+                                     ("μ" . "mu")
                                      ("…" . "ellipsis")
                                      ("—" . "emdash")
                                      ("™" . "tm")
                                      ("‽" . "interrobang")
+                                     ("à" . "a : grave")
                                      ("é" . "e : acute")
                                      ("ï" . "i : diaresis")
                                      ("°" . "degrees")
