@@ -58,9 +58,17 @@
      ,else))
 
 ;; completions
+(defun vertico/del-to-slash ()
+  (interactive)
+  (while (not (char-equal (char-before) ?/))
+    (backward-delete-char 1))
+  (backward-delete-char 1))
+
 (use-package vertico
   :straight t
-  :init (vertico-mode))
+  :init (vertico-mode)
+  :bind (:map vertico-map
+         ("M-<backspace>" . vertico/del-to-slash)))
 
 (defadvice vertico-insert (after vertico-insert-add-history activate)
   "Make 'vertico-insert' add to the minibuffer history."
@@ -509,7 +517,8 @@ the path down to `max-len'"
                                       ("🤣" . "Crying Laughing Emoji")
                                       ("😱" . "Frighten Emoji")
                                       ("😬" . "Cring Emoji")
-                                      ("😭" . "Crying Emoji"))))
+                                      ("😭" . "Crying Emoji")
+                                      ("🧑‍🚀🔫🧑‍🚀" . "'Always Has Been' Emoji"))))
                         (mapcar (lambda (char-cons)
                                   (format "%s - (%s)"
                                           (car char-cons)
