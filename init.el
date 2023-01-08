@@ -60,9 +60,12 @@
 ;; completions
 (defun vertico/del-to-slash ()
   (interactive)
-  (while (not (char-equal (char-before) ?/))
-    (backward-delete-char 1))
-  (backward-delete-char 1))
+  (cl-labels ((test-char (c)
+                         (char-equal c (char-before))))
+    (when (test-char ?/)
+      (backward-delete-char 1))
+    (while (not (test-char ?/))
+      (backward-delete-char 1))))
 
 (use-package vertico
   :straight t
