@@ -521,7 +521,8 @@ the path down to `max-len'"
                                       ("😱" . "Frighten Emoji")
                                       ("😬" . "Cring Emoji")
                                       ("😭" . "Crying Emoji")
-                                      ("🧑‍🚀🔫🧑‍🚀" . "'Always Has Been' Emoji"))))
+                                      ("🧑‍🚀🔫🧑‍🚀" . "'Always Has Been' Emoji")
+                                      ("🤡" . "Clown Emoji"))))
                         (mapcar (lambda (char-cons)
                                   (format "%s - (%s)"
                                           (car char-cons)
