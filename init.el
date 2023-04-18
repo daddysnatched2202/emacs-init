@@ -410,7 +410,6 @@ the path down to `max-len'"
 (blink-cursor-mode 1)
 (global-visual-line-mode 1)
 (global-display-line-numbers-mode 1)
-(global-display-fill-column-indicator-mode 1)
 (global-hl-line-mode 1)
 (show-paren-mode 1)
 
@@ -436,6 +435,8 @@ the path down to `max-len'"
 
 (setq-default fill-column 85)
 (setq-default auto-fill-function nil)
+(setq-default display-fill-column-indicator-character ?|)
+(add-hook 'change-major-mode-hook 'display-fill-column-indicator--turn-on)
 
 (setq-default org-src-fontify-natively t)
 
