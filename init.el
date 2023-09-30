@@ -569,3 +569,4 @@ capitalized"
 (global-set-key (kbd "C-c SPC") 'just-one-space)
 (global-set-key (kbd "C-c a q") 'ace/quit)
 (global-set-key (kbd "C-c a b") 'ace/buffer)
+(global-set-key (kbd "M-k") 'kill-whole-line)
