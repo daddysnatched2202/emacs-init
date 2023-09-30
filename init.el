@@ -414,7 +414,7 @@ the path down to `max-len'"
 (global-hl-line-mode 1)
 (show-paren-mode 1)
 
-(add-to-list 'default-frame-alist '(font . "Rec Mono Semicasual-24"))
+(add-to-list 'default-frame-alist '(font . "Rec Mono Semicasual-25"))
 (add-to-list 'default-frame-alist '(alpha . (95 . 85)))
 
 (setq display-line-numbers-type t)
