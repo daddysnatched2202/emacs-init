@@ -282,12 +282,13 @@
   :custom (aw-dispatch-always t)
   :custom-face (aw-leading-char-face ((t (:foreground "#BF616A"
                                                       :height 1.5)))))
-
+;;; org
 (use-package org
   :custom
   (org-startup-folded 'content)
   (org-blank-bofore-new-entry nil)
   :config (setq-default org-src-fontify-natively t)
+  ;; https://emacs.stackexchange.com/questions/54673/em-dash-before-italic-in-org-export/54715
   :init (setq org-emphasis-regexp-components
               '("-—[:space:]('\"{"
                 "-—[:space:].,:!?;'\")}\\["
