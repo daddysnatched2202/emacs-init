@@ -1,5 +1,5 @@
 ;; -*- lexical-binding: t -*-
-;; Copyright 2022-2023 Curtis Klassen
+;; Copyright 2022-2024 Curtis Klassen
 
 ;; This program is free software: you can redistribute it and/or modify it under the
 ;; terms of the GNU General Public License as published by the Free Software
@@ -281,7 +281,19 @@
   :bind (("M-o" . ace-window))
   :custom (aw-dispatch-always t)
   :custom-face (aw-leading-char-face ((t (:foreground "#BF616A"
-                                          :height 1.5)))))
+                                                      :height 1.5)))))
+
+(use-package org
+  :custom
+  (org-startup-folded 'content)
+  (org-blank-bofore-new-entry nil)
+  :config (setq-default org-src-fontify-natively t)
+  :init (setq org-emphasis-regexp-components
+              '("-—[:space:]('\"{"
+                "-—[:space:].,:!?;'\")}\\["
+                "[:space:]"
+                "."
+                1)))
 
 ;; dired
 (defun dired/find-file ()
@@ -439,14 +451,10 @@ the path down to `max-len'"
 (setq-default display-fill-column-indicator-character ?|)
 (setq-default display-fill-column-indicator t)
 
-(setq-default org-src-fontify-natively t)
-
 (setq-default indent-tabs-mode nil)
 
 (setq backup-directory-alist '(("." . "~/.emacs_saves")))
 (setq initial-scratch-message ";; Welcome to Emacs !!\n\n")
-(setq org-startup-folded 'content)
-(setq org-blank-before-new-entry nil)
 
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
