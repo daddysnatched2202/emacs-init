@@ -314,9 +314,9 @@
 (define-minor-mode nethack/mode
   "Mode to define Nethack keybinds for Dvorak
 Doesn't work unless 'OPTIONS=number_pad:1' is set in '~/.nethackrc'"
-  nil
-  " nethack"
-  nethack/keymap)
+  :init-value nil
+  :lighter " nethack"
+  :keymap nethack/keymap)
 
 (defun nethack/add-key (key-from dir)
   (cl-labels ((lookup-direction (direction)
