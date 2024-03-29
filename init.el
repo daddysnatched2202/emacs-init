@@ -282,6 +282,7 @@
   :custom (aw-dispatch-always t)
   :custom-face (aw-leading-char-face ((t (:foreground "#BF616A"
                                                       :height 1.5)))))
+
 ;;; org
 (use-package org
   :custom
@@ -411,7 +412,19 @@ the path down to `max-len'"
 ;; Emojify
 (use-package emojify
   :straight t
-  :init (emojify-set-emoji-styles '(unicode)))
+  :config (when (member "OpenMoji Color" (font-family-list))
+            (set-fontset-font
+             t
+             'emoji
+             (font-spec :family "OpenMoji Color")
+             nil
+             'prepend))
+  (setq emojify-display-style 'unicode)
+  (setq emojify-emoji-styles '(unicode)))
+
+;; Lua
+(use-package lua-mode
+  :straight t)
 
 ;; UI
 (tool-bar-mode 0)
