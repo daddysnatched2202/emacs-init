@@ -500,6 +500,15 @@ the path down to `max-len'"
     (goto-char start)
     (insert text)))
 
+(defun sp-word (arg)
+  (interactive "p")
+  (save-excursion
+    (let ((start (point))
+          (end (progn
+                 (forward-word)
+                 (point))))
+      (sp-region arg start end))))
+
 (defun sc-string (str)
   (concat (cl-loop for c across str
                    for s = (string c)
