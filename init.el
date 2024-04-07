@@ -288,6 +288,7 @@
   :custom
   (org-startup-folded 'content)
   (org-blank-bofore-new-entry nil)
+  (org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
   :config (setq-default org-src-fontify-natively t)
   ;; https://emacs.stackexchange.com/questions/54673/em-dash-before-italic-in-org-export/54715
   :init (setq org-emphasis-regexp-components
