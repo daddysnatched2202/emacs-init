@@ -413,15 +413,9 @@ the path down to `max-len'"
 ;; Emojify
 (use-package emojify
   :straight t
-  :config (when (member "OpenMoji Color" (font-family-list))
-            (set-fontset-font
-             t
-             'emoji
-             (font-spec :family "OpenMoji Color")
-             nil
-             'prepend))
-  (setq emojify-display-style 'unicode)
-  (setq emojify-emoji-styles '(unicode)))
+  :config (setq emojify-display-style 'unicode)
+  (setq emojify-emoji-styles '(unicode))
+  (set-fontset-font t 'emoji (font-spec :family "OpenMoji Color" nil 'prepend)))
 
 ;; Lua
 (use-package lua-mode
