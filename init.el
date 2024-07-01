@@ -542,7 +542,7 @@ the path down to `max-len'"
                                      ("‽" . "interrobang")
                                      ("à" . "a : grave")
                                      ("é" . "e : acute")
-                                     ("ï" . "i : diaresis")
+                                     ("ï" . "i : diaeresis")
                                      ("°" . "degrees")
                                      ("∴" . "therefore")
                                      ("∕" . "fake slash")
