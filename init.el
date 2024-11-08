@@ -308,8 +308,19 @@
 (use-package dired
   :bind (:map dired-mode-map
          ("C-F" . dired/find-file))
-  :hook ((dired-mode . dired-hide-details-mode))
+  :hook ((dired-mode . dired-hide-details-mode)
+         (dired-mode . display-fill-column-indicator-mode))
   :custom (dired-auto-revert-buffer t))
+
+(defun disable-fill-column ()
+  (setq-local display-fill-column-indicator nil))
+
+(use-package dired-git-info
+  :straight t
+  :bind (:map dired-mode-map
+              (")" . 'dired-git-info-mode))
+  :hook ((dired-after-readin . dired-git-info-auto-enable)
+         (dired-after-readin . disable-fill-column)))
 
 ;; nethack
 (defvar nethack/keymap (make-keymap))
@@ -555,7 +566,8 @@ the path down to `max-len'"
                                       ("😭" . "Crying Emoji")
                                       ("🧑‍🚀🔫🧑‍🚀" . "'Always Has Been' Emoji")
                                       ("🤡" . "Clown Emoji")
-                                      ("😐" . "Meh Emoji"))))
+                                      ("😐" . "Meh Emoji")
+                                      ("¯\\(ツ)_/¯" . "Shrug Emoticon"))))
                         (mapcar (lambda (char-cons)
                                   (format "%s - (%s)"
                                           (car char-cons)
