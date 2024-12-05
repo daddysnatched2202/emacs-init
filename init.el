@@ -554,6 +554,7 @@ the path down to `max-len'"
                                      ("à" . "a : grave")
                                      ("é" . "e : acute")
                                      ("ï" . "i : diaeresis")
+                                     ("ǚ" . "u : diaresis + caron")
                                      ("°" . "degrees")
                                      ("∴" . "therefore")
                                      ("∕" . "fake slash")
